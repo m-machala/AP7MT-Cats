@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".ViewNewImage">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -12,7 +12,7 @@
         android:orientation="vertical">
 
         <androidx.appcompat.widget.Toolbar
-            android:id="@+id/toolbar"
+            android:id="@+id/toolbar3"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="?attr/colorPrimary"
@@ -20,41 +20,29 @@
             android:theme="?attr/actionBarTheme">
 
             <Button
-                android:id="@+id/buttonSaved"
+                android:id="@+id/buttonSave"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Saved"
-                android:layout_gravity="left"
-                />
+                android:layout_gravity="start"
+                android:text="Save" />
 
             <Button
-                android:id="@+id/buttonRefresh"
+                android:id="@+id/buttonBack"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Refresh"
-                android:layout_gravity="center"
-                />
-
-            <Button
-                android:id="@+id/buttonSettings"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Settings"
-                android:layout_gravity="right"
-                />
+                android:layout_gravity="end"
+                android:text="Back" />
 
         </androidx.appcompat.widget.Toolbar>
 
-
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recycler"
+        <ImageView
+            android:id="@+id/imageView"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" >
-
-        </androidx.recyclerview.widget.RecyclerView>
-
-
+            android:layout_height="wrap_content"
+            android:padding="15dp"
+            android:scaleType="fitCenter"
+            android:src="@drawable/placeholder" />
 
     </LinearLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
