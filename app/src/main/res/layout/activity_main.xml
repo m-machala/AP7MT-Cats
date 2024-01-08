@@ -46,6 +46,11 @@
         </androidx.appcompat.widget.Toolbar>
 
 
+        <ImageView
+            android:id="@+id/imageView2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:srcCompat="@drawable/placeholder" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recycler"
@@ -53,7 +58,6 @@
             android:layout_height="match_parent" >
 
         </androidx.recyclerview.widget.RecyclerView>
-
 
 
     </LinearLayout>
