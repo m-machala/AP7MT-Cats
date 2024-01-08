@@ -3,13 +3,11 @@ package com.example.cats
 import android.graphics.Bitmap
 import java.net.URL
 import kotlin.io.readBytes
-import kotlinx.coroutines.*
 import android.graphics.BitmapFactory
 
 class MainActivityViewModel {
 
-    private suspend fun downloadCat(): Bitmap? {
-        val scope = CoroutineScope(Dispatchers.Default)
+    suspend fun getCat(): Cat {
         var bitmap: Bitmap? = null
         try {
             val url = URL("https://cataas.com/cat")
@@ -19,13 +17,7 @@ class MainActivityViewModel {
         catch (_: Exception) {
         }
 
-        return bitmap
-    }
-
-    suspend fun getCat(): Cat {
-        val bitmap = downloadCat()
         val name = "test name"
-
         return Cat(bitmap, name)
     }
 }
