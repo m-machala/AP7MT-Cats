@@ -1,13 +1,16 @@
 package com.example.cats
 
+import android.content.Intent
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.RecyclerView
 
-class MainRecyclerViewAdapter(private val catList: List<Cat>) :
+class MainRecyclerViewAdapter(private val catList: List<Cat>, private val ref: MainActivity) :
     RecyclerView.Adapter<MainRecyclerViewAdapter.ViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(parent.context)
@@ -19,6 +22,9 @@ class MainRecyclerViewAdapter(private val catList: List<Cat>) :
         val cat = catList[position]
         holder.catImageView.setImageBitmap(cat.bitmap)
         holder.catTextView.text = cat.name
+        holder.catImageView.setOnClickListener {
+            ref.openImage(cat)
+        }
     }
 
     override fun getItemCount(): Int {

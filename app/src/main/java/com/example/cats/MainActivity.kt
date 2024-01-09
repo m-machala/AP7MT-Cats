@@ -1,13 +1,17 @@
 package com.example.cats
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.cats.databinding.ActivityMainBinding
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import android.graphics.Bitmap
+import java.io.ByteArrayOutputStream
 
 class MainActivity : AppCompatActivity() {
 
@@ -21,8 +25,9 @@ class MainActivity : AppCompatActivity() {
         binding.buttonRefresh.setOnClickListener {
             loadCats()
         }
+
         binding.recycler.layoutManager = LinearLayoutManager(this)
-        adapter = MainRecyclerViewAdapter(catList)
+        adapter = MainRecyclerViewAdapter(catList, this)
         binding.recycler.adapter = adapter
         loadCats()
 
@@ -47,5 +52,16 @@ class MainActivity : AppCompatActivity() {
                 }
             }
         }
+    }
+
+    fun openImage(cat: Cat) {
+        val i = Intent(this, ViewNewImage::class.java)
+        i.putExtra("Name", cat.name)
+        val os = ByteArrayOutputStream()
+        val bitmapCopy = cat.bitmap?.copy(cat.bitmap.config, true)
+        bitmapCopy?.compress(Bitmap.CompressFormat.JPEG, 50, os)
+        val arr = os.toByteArray()
+        i.putExtra("Image", arr)
+        startActivity(i)
     }
 }
