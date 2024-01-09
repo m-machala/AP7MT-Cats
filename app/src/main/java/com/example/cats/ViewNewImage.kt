@@ -1,9 +1,13 @@
 package com.example.cats
 
+import android.graphics.Bitmap
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.example.cats.databinding.ActivityViewNewImageBinding
 import android.graphics.BitmapFactory
+import android.util.Log
+import java.io.File
+import java.io.FileOutputStream
 
 class ViewNewImage : AppCompatActivity() {
     private lateinit var binding: ActivityViewNewImageBinding
@@ -16,6 +20,20 @@ class ViewNewImage : AppCompatActivity() {
         val bitmap = image?.let { BitmapFactory.decodeByteArray(image, 0, it.size) }
 
         binding.imageView.setImageBitmap(bitmap)
+
+        binding.buttonBack.setOnClickListener {
+            finish()
+        }
+
+        binding.buttonSave.setOnClickListener {
+            var file = File(filesDir, "$name.jpg")
+            val os = FileOutputStream(file)
+            val bitmapCopy = bitmap?.copy(bitmap.config, true)
+            bitmapCopy?.compress(Bitmap.CompressFormat.JPEG, 100, os)
+            os.close()
+
+            finish()
+        }
 
         setContentView(binding.root)
     }

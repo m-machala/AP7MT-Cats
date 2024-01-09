@@ -61,6 +61,7 @@ class MainActivity : AppCompatActivity() {
         val bitmapCopy = cat.bitmap?.copy(cat.bitmap.config, true)
         bitmapCopy?.compress(Bitmap.CompressFormat.JPEG, 50, os)
         val arr = os.toByteArray()
+        os.close()
         i.putExtra("Image", arr)
         startActivity(i)
     }

@@ -17,7 +17,8 @@ class MainActivityViewModel {
         catch (_: Exception) {
         }
 
-        val name = "test name"
+        val timestamp: Long = System.currentTimeMillis()
+        val name = timestamp.toString()
         return Cat(bitmap, name)
     }
 }
