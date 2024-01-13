@@ -5,11 +5,10 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.example.cats.databinding.ActivityViewNewImageBinding
 import android.graphics.BitmapFactory
-import android.util.Log
 import java.io.File
 import java.io.FileOutputStream
 
-class ViewNewImage : AppCompatActivity() {
+class ViewNewImageActivity : AppCompatActivity() {
     private lateinit var binding: ActivityViewNewImageBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         binding = ActivityViewNewImageBinding.inflate(layoutInflater)

@@ -3,7 +3,6 @@ package com.example.cats
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.cats.databinding.ActivityMainBinding
 import kotlinx.coroutines.CoroutineScope
@@ -24,6 +23,11 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         binding.buttonRefresh.setOnClickListener {
             loadCats()
+        }
+
+        binding.buttonSaved.setOnClickListener {
+            val i = Intent(this, DownloadedActivity::class.java)
+            startActivity(i)
         }
 
         binding.recycler.layoutManager = LinearLayoutManager(this)
@@ -55,7 +59,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun openImage(cat: Cat) {
-        val i = Intent(this, ViewNewImage::class.java)
+        val i = Intent(this, ViewNewImageActivity::class.java)
         i.putExtra("Name", cat.name)
         val os = ByteArrayOutputStream()
         val bitmapCopy = cat.bitmap?.copy(cat.bitmap.config, true)
