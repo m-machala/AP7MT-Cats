@@ -18,6 +18,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var adapter: MainRecyclerViewAdapter
     private var viewModel = MainActivityViewModel()
     private var catList = mutableListOf<Cat>()
+    private var urlModifier = ""
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
@@ -30,6 +31,11 @@ class MainActivity : AppCompatActivity() {
             startActivity(i)
         }
 
+        binding.buttonSettings.setOnClickListener {
+            val i = Intent(this, SettingsActivity::class.java)
+            startActivityForResult(i, 1)
+        }
+
         binding.recycler.layoutManager = LinearLayoutManager(this)
         adapter = MainRecyclerViewAdapter(catList, this)
         binding.recycler.adapter = adapter
@@ -38,6 +44,23 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
     }
 
+    @Deprecated("Deprecated in Java")
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if(data != null) {
+            val result = data.getStringExtra("urlModifier")
+            if(result != null) {
+                urlModifier = result
+            }
+            else {
+                urlModifier = ""
+            }
+        }
+        else {
+            urlModifier = ""
+        }
+        loadCats()
+    }
     private fun loadCats() {
         if(catList.size > 0) {
             val size = catList.size
@@ -49,7 +72,7 @@ class MainActivity : AppCompatActivity() {
         val scope = CoroutineScope(Dispatchers.Default)
         scope.launch {
             for(i in 0 .. 9) {
-                val cat = viewModel.getCat()
+                val cat = viewModel.getCat(urlModifier)
                 withContext(Dispatchers.Main) {
                     catList.add(cat)
                     adapter.notifyItemInserted(catList.size)

@@ -7,10 +7,10 @@ import android.graphics.BitmapFactory
 
 class MainActivityViewModel {
 
-    suspend fun getCat(): Cat {
+    suspend fun getCat(urlModifier: String): Cat {
         var bitmap: Bitmap? = null
         try {
-            val url = URL("https://cataas.com/cat")
+            val url = URL("https://cataas.com/cat$urlModifier")
             val imageData = url.readBytes()
             bitmap = BitmapFactory.decodeByteArray(imageData, 0, imageData.size)
         }
