@@ -16,6 +16,9 @@
         android:theme="@style/Theme.Cats"
         tools:targetApi="31">
         <activity
+            android:name=".ViewDownloadedImageActivity"
+            android:exported="false" />
+        <activity
             android:name=".DownloadedActivity"
             android:exported="false" />
         <activity

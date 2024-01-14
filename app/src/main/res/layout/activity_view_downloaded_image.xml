@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ViewNewImageActivity">
+    tools:context=".ViewDownloadedImageActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -20,11 +20,11 @@
             android:theme="?attr/actionBarTheme">
 
             <Button
-                android:id="@+id/buttonSave"
+                android:id="@+id/buttonDelete"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="start"
-                android:text="Save" />
+                android:text="Delete" />
 
             <Button
                 android:id="@+id/buttonBack"

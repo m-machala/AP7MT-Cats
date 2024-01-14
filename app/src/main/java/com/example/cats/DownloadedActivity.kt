@@ -1,9 +1,12 @@
 package com.example.cats
 
+import android.content.Intent
+import android.graphics.Bitmap
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.cats.databinding.ActivityDownloadedBinding
+import java.io.ByteArrayOutputStream
 
 class DownloadedActivity : AppCompatActivity() {
     private lateinit var binding: ActivityDownloadedBinding
@@ -26,5 +29,17 @@ class DownloadedActivity : AppCompatActivity() {
         }
 
         setContentView(binding.root)
+    }
+
+    fun openImage(cat: Cat) {
+        val i = Intent(this, ViewDownloadedImageActivity::class.java)
+        i.putExtra("Name", cat.name)
+        val os = ByteArrayOutputStream()
+        val bitmapCopy = cat.bitmap?.copy(cat.bitmap.config, true)
+        bitmapCopy?.compress(Bitmap.CompressFormat.JPEG, 100, os)
+        val arr = os.toByteArray()
+        os.close()
+        i.putExtra("Image", arr)
+        startActivity(i)
     }
 }

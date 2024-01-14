@@ -19,6 +19,9 @@ class DownloadedRecyclerViewAdapter(private val catList: List<Cat>, private val 
         val cat = catList[position]
         holder.catImageView.setImageBitmap(cat.bitmap)
         holder.catTextView.text = cat.name
+        holder.catImageView.setOnClickListener {
+            ref.openImage(cat)
+        }
     }
 
     override fun getItemCount(): Int {
