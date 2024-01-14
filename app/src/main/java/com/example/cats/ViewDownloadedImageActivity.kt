@@ -24,6 +24,13 @@ class ViewDownloadedImageActivity : AppCompatActivity() {
             finish()
         }
 
+        binding.buttonDelete.setOnClickListener {
+            val dir = filesDir
+            val file = File(dir,"$name.jpg")
+            file.delete()
+            finish()
+        }
+
         setContentView(binding.root)
     }
 }

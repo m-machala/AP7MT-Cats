@@ -31,6 +31,14 @@ class DownloadedActivity : AppCompatActivity() {
         setContentView(binding.root)
     }
 
+    override fun onResume() {
+        super.onResume()
+        val newCatList = viewModel.getCatList()
+        catList.clear()
+        catList.addAll(newCatList)
+        adapter.notifyDataSetChanged()
+    }
+
     fun openImage(cat: Cat) {
         val i = Intent(this, ViewDownloadedImageActivity::class.java)
         i.putExtra("Name", cat.name)
