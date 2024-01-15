@@ -12,7 +12,7 @@ class DownloadedActivityViewModel(private val context: Context) {
         val outputList = mutableListOf<Cat>()
 
         for(file in files) {
-            if(file == null) {
+            if(file == null || !file.name.endsWith(".jpg")) {
                 continue
             }
             val bytes = file.readBytes()
